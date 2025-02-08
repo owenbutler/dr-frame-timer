@@ -4,7 +4,7 @@ Single file library intended for use with [DragonRuby](https://dragonruby.org/).
 
 DR Frame Timer shows a small graph of elapsed frame time, over time.
 
-[screenshot]
+[screenshot](./frame-timer.png)
 
 ## Installation
 
@@ -13,7 +13,7 @@ Preferred install is via DragonRuby builtin [download_stb_rb](https://docs.drago
 First, download the lib using the above method, in the DragonRuby Console:
 
 ```
-$gtk.download_stb_raw "https://github.com/owenbutler/dr-frame-timer/blob/main/frame-timer.rb" "lib/frame-timer.rb"
+$gtk.download_stb_raw "https://raw.githubusercontent.com/owenbutler/dr-frame-timer/refs/heads/main/frame-timer.rb" "lib/frame-timer.rb"
 ```
 
 By default, this will download the lib to `lib/frame-timer.rb`
