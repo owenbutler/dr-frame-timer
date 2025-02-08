@@ -4,7 +4,7 @@ Single file library intended for use with [DragonRuby](https://dragonruby.org/).
 
 DR Frame Timer shows a small graph of elapsed frame time, over time.
 
-[screenshot](./frame-timer.png)
+![screenshot](./frame-timer.png)
 
 ## Installation
 
