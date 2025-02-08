@@ -66,6 +66,14 @@ frame-timer.disable()
 frame-timer.toggle()
 ```
 
+For example:
+
+```ruby
+  if $inputs.keyboard.key_down.p
+    $frame_timer.toggle
+  end
+```
+
 ### Customisation
 
 You can configure the following attributes of the graph, via the corresponding arguments to the constructor
