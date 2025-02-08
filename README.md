@@ -4,19 +4,19 @@ Single file library intended for use with [DragonRuby](https://dragonruby.org/).
 
 DR Frame Timer shows a small graph of elapsed frame time, over time.
 
-![screenshot](./frame-timer.png)
+![screenshot of frame timer in action](./frame-timer.png)
 
 ## Installation
 
 Preferred install is via DragonRuby builtin [download_stb_rb](https://docs.dragonruby.org/#-----download_stb_rb(_raw)-)
 
-First, download the lib using the above method, in the DragonRuby Console:
+First, download the lib using, using the DragonRuby Console:
 
 ```
 $gtk.download_stb_raw "https://raw.githubusercontent.com/owenbutler/dr-frame-timer/refs/heads/main/frame-timer.rb" "lib/frame-timer.rb"
 ```
 
-By default, this will download the lib to `lib/frame-timer.rb`
+This will download the lib to `lib/frame-timer.rb`
 
 Include the following in your `main.rb`:
 
@@ -48,18 +48,18 @@ end
 
 By default, the Frame Timer and graph are enabled in dev mode and disabled in Production.
 
-You can start disabled by configuring on creation:
+You can start disabled via config:
 
 ```ruby
 frame-timer = FrameTimer.new(start_disabled: true)
 ```
 
-You can also disable/enable/toggle the graph:
+You can also disable/enable/toggle the graph at any point:
 
 ```ruby
-frame-timer.enable
-frame-timer.disable
-frame-timer.toggle
+frame-timer.enable()
+frame-timer.disable()
+frame-timer.toggle()
 ```
 
 ### Customisation
