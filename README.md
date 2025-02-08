@@ -6,8 +6,8 @@ DR Frame Timer shows a small graph of elapsed frame time, over time.
 
 ![screenshot of frame timer in action](./frame-timer.png)
 
-- Green lines on the graph indicate that less than 8ms was spent in `tick`.  Heaps of headroom to go.
-- Yellow lines on the graph indicate that between 8ms and 16ms was spent in `tick`.  Plenty of headroom to go.
+- Green lines on the graph indicate that less than 8ms was spent in `tick`.  Plenty of headroom to go.
+- Yellow lines on the graph indicate that between 8ms and 16ms was spent in `tick`.  Some of headroom to go.
 - Red lines on the graph indicate that > 16ms was spent in `tick`. You'll be dipping below 60fps at this point and will want to look into performance optimisations.
   
 ## Installation
