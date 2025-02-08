@@ -31,7 +31,7 @@ Minimal example:
 ```ruby
 require 'app/lib/frame-timer.rb'
 
-$frame-timer = FrameTimer.new
+$frame_timer = FrameTimer.new
 
 def tick args
   $frame_timer.start_tick(args)
