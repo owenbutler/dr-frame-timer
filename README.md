@@ -29,7 +29,7 @@ require 'app/lib/frame-timer.rb'
 Minimal example:
 
 ```ruby
-require 'lib/frame-timer.rb'
+require 'app/lib/frame-timer.rb'
 
 $frame-timer = FrameTimer.new
 
