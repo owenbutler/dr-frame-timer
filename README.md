@@ -13,15 +13,15 @@ Preferred install is via DragonRuby builtin [download_stb_rb](https://docs.drago
 First, download the lib, using the DragonRuby Console:
 
 ```
-$gtk.download_stb_raw "https://raw.githubusercontent.com/owenbutler/dr-frame-timer/refs/heads/main/frame-timer.rb" "lib/frame-timer.rb"
+$gtk.download_stb_rb_raw "https://raw.githubusercontent.com/owenbutler/dr-frame-timer/refs/heads/main/frame-timer.rb", "app/lib/frame-timer.rb"
 ```
 
-This will download the lib to `lib/frame-timer.rb`
+This will download the lib to `app/lib/frame-timer.rb`
 
 Include the following in your `main.rb`:
 
 ```
-require 'lib/frame-timer.rb'
+require 'app/lib/frame-timer.rb'
 ```
 
 ## Usage
