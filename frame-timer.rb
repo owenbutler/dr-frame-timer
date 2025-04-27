@@ -80,7 +80,7 @@ class FrameTimer
       @frame_index = 0
     end
 
-    args.outputs.sprites << {
+    args.outputs.primitives << {
       x: @graph_x, y: @graph_y, w: @graph_width, h: @graph_height, path: :frame_timing
     }
   end
