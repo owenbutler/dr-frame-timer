@@ -55,15 +55,15 @@ By default, the Frame Timer and graph are enabled in dev mode and disabled in Pr
 You can start disabled via config:
 
 ```ruby
-frame-timer = FrameTimer.new(start_disabled: true)
+frame_timer = FrameTimer.new(start_disabled: true)
 ```
 
 You can also disable/enable/toggle the graph at any point:
 
 ```ruby
-frame-timer.enable()
-frame-timer.disable()
-frame-timer.toggle()
+frame_timer.enable()
+frame_timer.disable()
+frame_timer.toggle()
 ```
 
 For example:
