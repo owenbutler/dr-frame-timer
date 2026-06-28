@@ -1,15 +1,15 @@
 # FrameTimer - single file library for displaying frame timings in DragonRuby
 class FrameTimer
-  def initialize(graph_scale: 3, graph_width: 1280, graph_x: 0, graph_y: 0, graph_alpha: 200, start_disabled: false)
+  def initialize(graph_scale: 3, graph_alpha: 200, start_disabled: false)
     @clear_next_tick = true
     @frame_start_time = 0
     @frame_end_time = 0
     @graph_scale = graph_scale
     @frame_index = 0
-    @graph_width = graph_width
+    @graph_width = 1280
     @graph_height = 32 * graph_scale
-    @graph_x = graph_x
-    @graph_y = graph_y
+    @graph_x = 0
+    @graph_y = 0
     @graph_alpha = graph_alpha
     @disabled = $gtk.production? || start_disabled
     @buffers = [:graph1, :graph2]

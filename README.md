@@ -79,7 +79,4 @@ For example:
 You can configure the following attributes of the graph, via the corresponding arguments to the constructor
 
 - `graph_scale: 3` - Scale the height of the graph.
-- `graph_width: 1280` - How wide the graph spans.
-- `graph_x: 0` - The starting bottom left x co-ordinate of the graph.
-- `graph_y: 0` - The starting bottom left y co-ordinate of the graph.
 - `graph_alpha: 200` - How transparent the graph is rendered.
