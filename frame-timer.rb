@@ -36,7 +36,6 @@ class FrameTimer
 
   def disable
     @disabled = true
-    @span_render = true
   end
 
   def toggle
