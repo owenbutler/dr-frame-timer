@@ -54,12 +54,8 @@ class FrameTimer
 
     return if @disabled
 
-    args.outputs[@buffers[0]].clear_before_render = false
-    args.outputs[@buffers[0]].w = @graph_width
-    args.outputs[@buffers[0]].h = @graph_height
-    args.outputs[@buffers[1]].clear_before_render = false
-    args.outputs[@buffers[1]].w = @graph_width
-    args.outputs[@buffers[1]].h = @graph_height
+    args.outputs[@buffers[0]].set(clear_before_render: false, w: @graph_width h: @graph_height)
+    args.outputs[@buffers[1]].set(clear_before_render: false, w: @graph_width h: @graph_height)
   end
 
   def end_tick(args)
