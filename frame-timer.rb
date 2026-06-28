@@ -136,9 +136,10 @@ class FrameTimer
     }
 
     # text column headers
-    prims << {r: 250, g: 250, b: 230, text: "Name", x: 20, y: 700, size_enum: -3, aligntment_enum: 2}
-    prims << {r: 200, g: 200, b: 220, text: "%", x:  265, y: 700, size_enum: -3, aligntment_enum: 2}
-    prims << {r: 200, g: 200, b: 220, text: "ms", x:  235, y: 700, size_enum: -3, aligntment_enum: 2}
+    header_size = -3
+    prims << {r: 250, g: 250, b: 230, text: "Name", x: 20, y: 700, size_enum: header_size, aligntment_enum: 2}
+    prims << {r: 200, g: 200, b: 220, text: "%", x:  265, y: 700, size_enum: header_size, aligntment_enum: 2}
+    prims << {r: 200, g: 200, b: 220, text: "ms", x:  235, y: 700, size_enum: header_size, aligntment_enum: 2}
 
     recurse_span_graph(prims, span_to_render, parent)
 
