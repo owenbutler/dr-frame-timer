@@ -9,7 +9,9 @@ DR Frame Timer shows a small graph of elapsed frame time, over time.
 - Green lines on the graph indicate that less than 8ms was spent in `tick`.  Large amount of headroom to work with.
 - Yellow lines on the graph indicate that between 8ms and 16ms was spent in `tick`.  Some headroom to work with.
 - Red lines on the graph indicate that > 16ms was spent in `tick`. You'll be dipping below 60fps at this point and will want to look into performance optimisations.
-  
+
+You can also add named spans around blocks of code, then inspect how long those spans take within an individual frame.
+
 ## Installation
 
 Preferred install is via DragonRuby builtin [download_stb_rb](https://docs.dragonruby.org/#/api/runtime?id=download_stb_rb_raw)
@@ -30,7 +32,7 @@ require 'app/lib/frame-timer.rb'
 
 ## Usage
 
-Minimal example:
+### Minimal example:
 
 ```ruby
 require 'app/lib/frame-timer.rb'
@@ -46,11 +48,39 @@ def tick args
 end
 ```
 
+### Span timing example:
+
+```ruby
+require 'app/lib/frame-timer.rb'
+
+$frame_timer = FrameTimer.new
+
+def tick args
+  $frame_timer.start_tick(args)
+
+  $frame_timer.span(:inputs) {
+    # input code
+  }
+  $frame_timer.span(:update) {
+    # update code
+  }
+  $frame_timer.span(:render) {
+    # render code
+  }
+
+  if $inputs.keyboard.key_down.o
+    $frame_timer.toggle_span_profiles
+  end
+
+  $frame_timer.end_tick(args)
+end
+```
+
 ## Configuration
 
 ### Dev Mode/Production
 
-By default, the Frame Timer and graph are enabled in dev mode and disabled in Production.
+By default, the Frame Timer and graph starts enabled in dev mode and starts disabled in Production.
 
 You can start disabled via config:
 
@@ -71,6 +101,14 @@ For example:
 ```ruby
   if $inputs.keyboard.key_down.p
     $frame_timer.toggle
+  end
+```
+
+You can toggle the display of span profiles using `toggle_span_profiles`:
+
+```ruby
+  if $inputs.keyboard.key_down.o
+    $frame_timer.toggle_span_profiles
   end
 ```
 
