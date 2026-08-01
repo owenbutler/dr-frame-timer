@@ -51,11 +51,6 @@ class FrameTimer
 
     @frame_spans[@frame_index] = { children: {} }
     @span_collecter_stack = [@frame_spans[@frame_index]]
-
-    return if @disabled
-
-    args.outputs[@buffers[0]].set(clear_before_render: false, w: @graph_width, h: @graph_height)
-    args.outputs[@buffers[1]].set(clear_before_render: false, w: @graph_width, h: @graph_height)
   end
 
   def end_tick(args)
@@ -79,39 +74,31 @@ class FrameTimer
         color = { r: 255, g: 0, b: 0 }
       end
 
-      if @clear_next_tick
-        args.outputs[:frame_timing].clear_before_render = true
-        yellow_y = 8 * @graph_scale
-        red_y = 16 * @graph_scale
-        args.outputs[:frame_timing].lines << [
-          { x: 0, y: yellow_y, x2: @graph_width, y2: yellow_y, r: 255, g: 255, b: 0, a: @graph_alpha },
-          { x: 0, y: red_y, x2: @graph_width, y2: red_y, r: 255, g: 0, b: 0, a: @graph_alpha }
-        ]
-        @clear_next_tick = false
-      end
-
-      $outputs[@buffers[0]].clear_before_render = true
-      $outputs[@buffers[0]].primitives << {
-        x: -1, y: 0, w: @graph_width, h: @graph_height, path: @buffers[1],
-      }
-
-      $outputs[@buffers[0]].lines << {
-        x: 1279, y: 0,
-        x2: 1279, y2: elapsed_ms * @graph_scale, **color, a: 255
-      }
-
-      @buffers[0], @buffers[1] = @buffers[1], @buffers[0]
+      @graph_samples ||= []
+      @graph_samples << { ms: elapsed_ms, color: color }
+      @graph_samples.shift if @graph_samples.length > @graph_width
 
       @frame_index += 1
-      if @frame_index == @graph_width
-        @clear_next_tick = true
-        @frame_index = 0
+      @frame_index = 0 if @frame_index == @graph_width
+
+      yellow_y = @graph_y + 8 * @graph_scale
+      red_y = @graph_y + 16 * @graph_scale
+      args.outputs.primitives << { x: @graph_x, y: yellow_y, x2: @graph_x + @graph_width, y2: yellow_y, r: 255, g: 255, b: 0, a: @graph_alpha, primitive_marker: :line }
+      args.outputs.primitives << { x: @graph_x, y: red_y, x2: @graph_x + @graph_width, y2: red_y, r: 255, g: 0, b: 0, a: @graph_alpha, primitive_marker: :line }
+
+      right = @graph_x + @graph_width - 1
+      index = @graph_samples.length - 1
+      while index >= 0
+        sample = @graph_samples[index]
+        x = right - (@graph_samples.length - 1 - index)
+        args.outputs.primitives << {
+          x: x, y: @graph_y,
+          x2: x, y2: @graph_y + sample[:ms] * @graph_scale,
+          **sample[:color], a: @graph_alpha, primitive_marker: :line
+        }
+        index -= 1
       end
     end
-
-    args.outputs.primitives << {
-      x: @graph_x, y: @graph_y, w: @graph_width, h: @graph_height, path: @buffers[1], a: @graph_alpha
-    }
   end
 
   def render_span_profiles
